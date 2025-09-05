@@ -14,7 +14,6 @@
         }
 
         * { box-sizing: border-box; }
-
         html, body { height: 100%; }
 
         body {
@@ -65,21 +64,15 @@
         h1 { font-size: 3em; color: var(--muted); margin: 0; }
         h2 { font-size: 1.5em; color: var(--muted); margin: 10px 0 0; }
 
-        .creditos {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            font-size: 1em;
-            opacity: 0.8;
-        }
+        .creditos { position: fixed; bottom: 10px; left: 10px; font-size: 1em; opacity: 0.8; }
 
         .menu {
             display: none;
             justify-content: center;
             gap: 20px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
-
         .menu button, .back-btn {
             padding: 10px 20px;
             font-size: 1em;
@@ -139,9 +132,11 @@
 
     <!-- Menu -->
     <div class="menu" id="menu">
+        <button onclick="mostrarConteudo('introducao')">Introdução</button>
         <button onclick="mostrarConteudo('objetivo')">Objetivo</button>
         <button onclick="mostrarConteudo('exemplos')">Exemplos</button>
         <button onclick="mostrarConteudo('video')">Vídeo</button>
+        <button onclick="mostrarConteudo('conclusao')">Conclusão</button>
     </div>
 
     <!-- Conteúdo -->
@@ -177,9 +172,13 @@
             const text = document.getElementById('contentText');
             const videoEmbed = document.getElementById('videoEmbed');
 
-            videoEmbed.innerHTML = ""; // limpa vídeo quando não for a aba de vídeo
+            videoEmbed.innerHTML = "";
 
-            if (tipo === 'objetivo') {
+            if (tipo === 'introducao') {
+                title.textContent = 'Introdução';
+                subtitle.textContent = '';
+                text.textContent = 'Ao longo da evolução da medicina e da estética, muitas substâncias químicas foram descobertas e estudadas por seus efeitos sobre o corpo humano. Algumas ganharam destaque por apresentarem propriedades capazes de eliminar microrganismos, enquanto outras passaram a ser utilizadas em tratamentos voltados ao cuidado e à renovação da pele. Entre esses compostos, o fenol se tornou um exemplo importante: uma substância que, por suas características químicas, encontrou aplicações tanto na área da saúde quanto em procedimentos estéticos, despertando interesse por sua eficácia e exigindo atenção especial quanto à sua forma de uso.';
+            } else if (tipo === 'objetivo') {
                 title.textContent = 'Objetivo';
                 subtitle.textContent = 'Apresentar o uso do fenol como agente antisséptico e em cosméticos.';
                 text.textContent = 'O fenol, também chamado de ácido carbólico, foi historicamente usado como antisséptico, mas hoje tem aplicações principalmente na dermatologia e em cosméticos. É utilizado em peelings químicos para renovação da pele, auxiliando no tratamento de manchas, cicatrizes e sinais de envelhecimento. Contudo, por ser uma substância tóxica e corrosiva, seu uso requer baixas concentrações e deve sempre ser realizado com acompanhamento profissional.';
@@ -202,6 +201,10 @@
                 subtitle.textContent = 'Exemplo prático sobre o fenol:';
                 text.textContent = '';
                 videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/u09mBKHMHWI" frameborder="0" allowfullscreen></iframe>';
+            } else if (tipo === 'conclusao') {
+                title.textContent = 'Conclusão';
+                subtitle.textContent = '';
+                text.textContent = 'O fenol teve grande importância histórica como antisséptico, mas atualmente é mais utilizado na dermatologia e cosmética, principalmente em peelings químicos. Apesar de seus benefícios, é uma substância tóxica e corrosiva, exigindo uso controlado e acompanhamento profissional. Dessa forma, o fenol representa um exemplo de como um composto químico pode ter aplicações relevantes, mas que requerem responsabilidade e cuidado em sua utilização.';
             }
 
             menu.style.display = 'none';
