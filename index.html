@@ -12,10 +12,8 @@
             --muted:#777;
             --border:#444;
         }
-
         * { box-sizing: border-box; }
         html, body { height: 100%; }
-
         body {
             margin: 0;
             padding: 0;
@@ -24,8 +22,6 @@
             color: var(--text);
             overflow: hidden;
         }
-
-        /* ==== CAPA ==== */
         .cover {
             position: fixed;
             inset: 0;
@@ -58,14 +54,10 @@
             50% { transform: translateY(-2px); opacity: 1; }
             100% { transform: translateY(0); opacity: .85; }
         }
-
-        /* ==== CONTEÚDO ==== */
         header { text-align: center; padding: 40px 0 20px; }
         h1 { font-size: 3em; color: var(--muted); margin: 0; }
         h2 { font-size: 1.5em; color: var(--muted); margin: 10px 0 0; }
-
         .creditos { position: fixed; bottom: 10px; left: 10px; font-size: 1em; opacity: 0.8; }
-
         .menu {
             display: none;
             justify-content: center;
@@ -84,7 +76,6 @@
             transition: background-color 0.3s;
         }
         .menu button:hover, .back-btn:hover { background-color: #444; }
-
         .content-box {
             background-color: var(--panel);
             max-width: 700px;
@@ -151,7 +142,6 @@
     <!-- Créditos -->
     <div class="creditos">Discentes: Delciomar & Jamerson</div>
 
-    <!-- Script -->
     <script>
         function entrarSite() {
             const cover = document.getElementById('cover');
@@ -171,7 +161,6 @@
             const subtitle = document.getElementById('contentSubtitle');
             const text = document.getElementById('contentText');
             const videoEmbed = document.getElementById('videoEmbed');
-
             videoEmbed.innerHTML = "";
 
             if (tipo === 'introducao') {
@@ -204,7 +193,7 @@
             } else if (tipo === 'conclusao') {
                 title.textContent = 'Conclusão';
                 subtitle.textContent = '';
-                text.textContent = 'O fenol teve grande importância histórica como antisséptico, mas atualmente é mais utilizado na dermatologia e cosmética, principalmente em peelings químicos. Apesar de seus benefícios, é uma substância tóxica e corrosiva, exigindo uso controlado e acompanhamento profissional. Dessa forma, o fenol representa um exemplo de como um composto químico pode ter aplicações relevantes, mas que requerem responsabilidade e cuidado em sua utilização.';
+                text.textContent = 'O fenol atua desde o controle de microrganismos até tratamentos estéticos, sendo eficaz quando usado corretamente, mas exige cuidado profissional devido à sua toxicidade.';
             }
 
             menu.style.display = 'none';
