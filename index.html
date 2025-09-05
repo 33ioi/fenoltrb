@@ -5,29 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fenol</title>
     <style>
+        :root{
+            --bg:#000;
+            --panel:#1a1a1a;
+            --text:#fff;
+            --muted:#777;
+            --border:#444;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #000000;
-            color: #ffffff;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden; /* evita scroll enquanto a capa estiver ativa */
         }
 
+        /* ==== CAPA (SPLASH) ==== */
+        .cover {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,0.06), transparent 60%),
+                linear-gradient(135deg, #0b0b0b, #101010 50%, #0b0b0b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 9999;
+            cursor: pointer;
+            transition: opacity .5s ease;
+        }
+        .cover.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .cover-content {
+            max-width: 90%;
+            width: 900px;
+            padding: 24px;
+            user-select: none;
+        }
+        .cover h1 {
+            margin: 0 0 6px;
+            font-size: clamp(42px, 8vw, 96px);
+            letter-spacing: 2px;
+            color: #e5e5e5;
+        }
+        .cover h2 {
+            margin: 0 0 24px;
+            font-size: clamp(16px, 3.2vw, 28px);
+            font-weight: 400;
+            color: var(--muted);
+        }
+        .cover-credits {
+            margin-top: 20px;
+            font-size: clamp(14px, 2.6vw, 18px);
+            opacity: 0.9;
+        }
+        .cover-hint {
+            margin-top: 28px;
+            font-size: clamp(14px, 2.8vw, 18px);
+            opacity: .8;
+            border: 1px solid #2e2e2e;
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 999px;
+        }
+        /* animação sutil do hint */
+        @keyframes pulse {
+            0% { transform: translateY(0); opacity: .85; }
+            50% { transform: translateY(-2px); opacity: 1; }
+            100% { transform: translateY(0); opacity: .85; }
+        }
+        .cover-hint { animation: pulse 2.2s ease-in-out infinite; }
+
+        /* ==== CONTEÚDO ==== */
         header {
             text-align: center;
             padding: 40px 0 20px;
-            background-color: #000000;
+            background-color: var(--bg);
         }
 
         h1 {
             font-size: 3em;
-            color: #777;
+            color: var(--muted);
             margin: 0;
         }
 
         h2 {
             font-size: 1.5em;
-            color: #777;
+            color: var(--muted);
             margin: 10px 0 0;
         }
 
@@ -41,7 +116,7 @@
         }
 
         .menu {
-            display: flex;
+            display: none; /* fica escondido até sair da capa */
             justify-content: center;
             gap: 20px;
             margin-top: 30px;
@@ -65,7 +140,7 @@
         }
 
         .content-box {
-            background-color: #1a1a1a;
+            background-color: var(--panel);
             max-width: 700px;
             margin: 40px auto;
             padding: 30px 20px;
@@ -79,7 +154,7 @@
             margin-top: 0;
             font-size: 1.8em;
             color: #ffffff;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
 
@@ -111,6 +186,17 @@
 </head>
 <body>
 
+    <!-- CAPA DE ABERTURA -->
+    <div id="cover" class="cover" role="button" aria-label="Entrar no site (clique ou toque)"
+         tabindex="0" onclick="entrarSite()" onkeydown="if(event.key==='Enter'||event.key===' ') entrarSite()">
+        <div class="cover-content">
+            <h1>Fenol</h1>
+            <h2>Antissépticos e Cosméticos</h2>
+            <div class="cover-credits">Discentes: Delciomar &amp; Jamerson</div>
+            <div class="cover-hint">Toque ou clique para entrar</div>
+        </div>
+    </div>
+
     <!-- Cabeçalho -->
     <header>
         <h1>Fenol</h1>
@@ -125,25 +211,35 @@
 
     <!-- Conteúdo dinâmico -->
     <div class="content-box" id="contentBox">
-        <!-- Título principal da seção -->
         <h3 id="contentTitle"></h3>
-        <!-- Subtítulo explicativo -->
         <p id="contentSubtitle" class="subtitle"></p>
-        <!-- Texto detalhado -->
         <p id="contentText"></p>
-        <!-- Vídeo incorporado -->
         <div id="videoEmbed"></div>
-        <!-- Botão de voltar -->
         <button class="back-btn" onclick="voltarMenu()">Voltar ao Menu</button>
     </div>
 
-    <!-- Créditos -->
+    <!-- Créditos fixos (podem ficar ocultos se preferir só na capa) -->
     <div class="creditos">
         Discentes: Delciomar & Jamerson
     </div>
 
     <!-- Script -->
     <script>
+        function entrarSite() {
+            const cover = document.getElementById('cover');
+            const menu = document.getElementById('menu');
+
+            // animação de saída
+            cover.classList.add('fade-out');
+
+            // após o fade, esconde a capa e mostra o menu
+            setTimeout(() => {
+                cover.style.display = 'none';
+                menu.style.display = 'flex';
+                document.body.style.overflow = 'auto'; // libera scroll do conteúdo
+            }, 480);
+        }
+
         function mostrarConteudo(tipo) {
             const menu = document.getElementById('menu');
             const contentBox = document.getElementById('contentBox');
@@ -156,22 +252,22 @@
                 title.textContent = 'Objetivo';
                 subtitle.textContent = 'Apresentar o uso do fenol como agente antisséptico e em cosméticos, destacando suas aplicações e cuidados.';
                 text.textContent = 'O fenol, também chamado de ácido carbólico, foi historicamente usado como antisséptico, mas hoje tem aplicações principalmente na dermatologia e em cosméticos. É utilizado em peelings químicos para renovação da pele, auxiliando no tratamento de manchas, cicatrizes e sinais de envelhecimento, além de atuar em alguns produtos como agente antimicrobiano ou conservante. Contudo, por ser uma substância tóxica e corrosiva, seu uso requer baixas concentrações e deve sempre ser realizado com acompanhamento profissional, garantindo eficácia sem riscos à saúde.';
-                videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/6wzx4FOgOwA" frameborder="0" allowfullscreen></iframe>';
+                videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/6wzx4FOgOwA" title="Fenol - explicação geral" frameborder="0" allowfullscreen></iframe>';
             } else if (tipo === 'exemplos') {
                 title.textContent = 'Exemplos';
                 subtitle.textContent = 'Aplicações práticas do fenol como antisséptico e em cosméticos:';
-                text.textContent = 
-                    'Uso Antisséptico:\n' +
+                text.textContent =
+                    '🧼 Uso Antisséptico:\n' +
                     '• Listerine® (fórmula antiga, com derivados fenólicos)\n' +
                     '• Sabões e desinfetantes hospitalares (ex.: Lysol antigo)\n' +
                     '• Desinfecção de instrumentos cirúrgicos (uso histórico)\n' +
                     '• Pastilhas e sprays para garganta (com baixa concentração de fenol)\n\n' +
-                    'Uso Cosmético:\n' +
+                    '💄 Uso Cosmético:\n' +
                     '• Peeling de fenol para rejuvenescimento da pele\n' +
                     '• Tratamento de rugas profundas\n' +
                     '• Clareamento de manchas resistentes\n' +
                     '• Melhora de cicatrizes de acne';
-                videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/4n6RZ9hA_Gw" frameborder="0" allowfullscreen></iframe>';
+                videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/4n6RZ9hA_Gw" title="Exemplo prático: Peeling com Fenol" frameborder="0" allowfullscreen></iframe>';
             }
 
             menu.style.display = 'none';
@@ -181,6 +277,8 @@
         function voltarMenu() {
             document.getElementById('menu').style.display = 'flex';
             document.getElementById('contentBox').style.display = 'none';
+            // opcional: rolar para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 
