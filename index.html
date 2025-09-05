@@ -15,9 +15,7 @@
 
         * { box-sizing: border-box; }
 
-        html, body {
-            height: 100%;
-        }
+        html, body { height: 100%; }
 
         body {
             margin: 0;
@@ -25,16 +23,14 @@
             font-family: Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            overflow: hidden; /* evita scroll enquanto a capa estiver ativa */
+            overflow: hidden;
         }
 
-        /* ==== CAPA (SPLASH) ==== */
+        /* ==== CAPA ==== */
         .cover {
             position: fixed;
             inset: 0;
-            background:
-                radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,0.06), transparent 60%),
-                linear-gradient(135deg, #0b0b0b, #101010 50%, #0b0b0b);
+            background: linear-gradient(135deg, #0b0b0b, #101010 50%, #0b0b0b);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -43,86 +39,48 @@
             cursor: pointer;
             transition: opacity .5s ease;
         }
-        .cover.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .cover-content {
-            max-width: 90%;
-            width: 900px;
-            padding: 24px;
-            user-select: none;
-        }
-        .cover h1 {
-            margin: 0 0 6px;
-            font-size: clamp(42px, 8vw, 96px);
-            letter-spacing: 2px;
-            color: #e5e5e5;
-        }
-        .cover h2 {
-            margin: 0 0 24px;
-            font-size: clamp(16px, 3.2vw, 28px);
-            font-weight: 400;
-            color: var(--muted);
-        }
-        .cover-credits {
-            margin-top: 20px;
-            font-size: clamp(14px, 2.6vw, 18px);
-            opacity: 0.9;
-        }
+        .cover.fade-out { opacity: 0; pointer-events: none; }
+        .cover-content { max-width: 90%; padding: 24px; }
+        .cover h1 { font-size: clamp(42px, 8vw, 96px); color: #e5e5e5; margin: 0; }
+        .cover h2 { font-size: clamp(16px, 3.2vw, 28px); color: var(--muted); margin: 10px 0 20px; }
+        .cover-credits { font-size: clamp(14px, 2.6vw, 18px); opacity: 0.9; }
         .cover-hint {
             margin-top: 28px;
             font-size: clamp(14px, 2.8vw, 18px);
             opacity: .8;
             border: 1px solid #2e2e2e;
-            display: inline-block;
             padding: 10px 16px;
             border-radius: 999px;
+            display: inline-block;
+            animation: pulse 2.2s ease-in-out infinite;
         }
-        /* animação sutil do hint */
         @keyframes pulse {
             0% { transform: translateY(0); opacity: .85; }
             50% { transform: translateY(-2px); opacity: 1; }
             100% { transform: translateY(0); opacity: .85; }
         }
-        .cover-hint { animation: pulse 2.2s ease-in-out infinite; }
 
         /* ==== CONTEÚDO ==== */
-        header {
-            text-align: center;
-            padding: 40px 0 20px;
-            background-color: var(--bg);
-        }
-
-        h1 {
-            font-size: 3em;
-            color: var(--muted);
-            margin: 0;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            color: var(--muted);
-            margin: 10px 0 0;
-        }
+        header { text-align: center; padding: 40px 0 20px; }
+        h1 { font-size: 3em; color: var(--muted); margin: 0; }
+        h2 { font-size: 1.5em; color: var(--muted); margin: 10px 0 0; }
 
         .creditos {
             position: fixed;
             bottom: 10px;
             left: 10px;
             font-size: 1em;
-            color: #ffffff;
             opacity: 0.8;
         }
 
         .menu {
-            display: none; /* fica escondido até sair da capa */
+            display: none;
             justify-content: center;
             gap: 20px;
             margin-top: 30px;
         }
 
-        .menu button, .back-btn, .video-btn {
+        .menu button, .back-btn {
             padding: 10px 20px;
             font-size: 1em;
             background-color: #222;
@@ -131,13 +89,8 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            text-decoration: none;
-            display: inline-block;
         }
-
-        .menu button:hover, .back-btn:hover, .video-btn:hover {
-            background-color: #444;
-        }
+        .menu button:hover, .back-btn:hover { background-color: #444; }
 
         .content-box {
             background-color: var(--panel);
@@ -145,50 +98,31 @@
             margin: 40px auto;
             padding: 30px 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(255,255,255,0.1);
             text-align: center;
             display: none;
         }
-
         .content-box h3 {
             margin-top: 0;
             font-size: 1.8em;
-            color: #ffffff;
             border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
-
         .content-box p {
             font-size: 1.1em;
-            color: #dddddd;
             margin-top: 15px;
             white-space: pre-line;
             text-align: justify;
         }
-
-        .content-box .subtitle {
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        iframe {
-            margin-top: 20px;
-            border-radius: 10px;
-            width: 100%;
-            height: 350px;
-        }
-
-        .back-btn {
-            margin-top: 20px;
-        }
+        .content-box .subtitle { font-weight: bold; margin-top: 10px; text-align: center; }
+        iframe { margin-top: 20px; border-radius: 10px; width: 100%; height: 350px; }
+        .back-btn { margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <!-- CAPA DE ABERTURA -->
-    <div id="cover" class="cover" role="button" aria-label="Entrar no site (clique ou toque)"
-         tabindex="0" onclick="entrarSite()" onkeydown="if(event.key==='Enter'||event.key===' ') entrarSite()">
+    <!-- CAPA -->
+    <div id="cover" class="cover" tabindex="0" onclick="entrarSite()" onkeydown="if(event.key==='Enter'||event.key===' ') entrarSite()">
         <div class="cover-content">
             <h1>Fenol</h1>
             <h2>Antissépticos e Cosméticos</h2>
@@ -203,13 +137,14 @@
         <h2>Antissépticos e cosméticos</h2>
     </header>
 
-    <!-- Menu de botões -->
+    <!-- Menu -->
     <div class="menu" id="menu">
         <button onclick="mostrarConteudo('objetivo')">Objetivo</button>
         <button onclick="mostrarConteudo('exemplos')">Exemplos</button>
+        <button onclick="mostrarConteudo('video')">Vídeo</button>
     </div>
 
-    <!-- Conteúdo dinâmico -->
+    <!-- Conteúdo -->
     <div class="content-box" id="contentBox">
         <h3 id="contentTitle"></h3>
         <p id="contentSubtitle" class="subtitle"></p>
@@ -218,25 +153,19 @@
         <button class="back-btn" onclick="voltarMenu()">Voltar ao Menu</button>
     </div>
 
-    <!-- Créditos fixos (podem ficar ocultos se preferir só na capa) -->
-    <div class="creditos">
-        Discentes: Delciomar & Jamerson
-    </div>
+    <!-- Créditos -->
+    <div class="creditos">Discentes: Delciomar & Jamerson</div>
 
     <!-- Script -->
     <script>
         function entrarSite() {
             const cover = document.getElementById('cover');
             const menu = document.getElementById('menu');
-
-            // animação de saída
             cover.classList.add('fade-out');
-
-            // após o fade, esconde a capa e mostra o menu
             setTimeout(() => {
                 cover.style.display = 'none';
                 menu.style.display = 'flex';
-                document.body.style.overflow = 'auto'; // libera scroll do conteúdo
+                document.body.style.overflow = 'auto';
             }, 480);
         }
 
@@ -248,26 +177,31 @@
             const text = document.getElementById('contentText');
             const videoEmbed = document.getElementById('videoEmbed');
 
+            videoEmbed.innerHTML = ""; // limpa vídeo quando não for a aba de vídeo
+
             if (tipo === 'objetivo') {
                 title.textContent = 'Objetivo';
-                subtitle.textContent = 'Apresentar o uso do fenol como agente antisséptico e em cosméticos, destacando suas aplicações e cuidados.';
-                text.textContent = 'O fenol, também chamado de ácido carbólico, foi historicamente usado como antisséptico, mas hoje tem aplicações principalmente na dermatologia e em cosméticos. É utilizado em peelings químicos para renovação da pele, auxiliando no tratamento de manchas, cicatrizes e sinais de envelhecimento, além de atuar em alguns produtos como agente antimicrobiano ou conservante. Contudo, por ser uma substância tóxica e corrosiva, seu uso requer baixas concentrações e deve sempre ser realizado com acompanhamento profissional, garantindo eficácia sem riscos à saúde.';
-                videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/6wzx4FOgOwA" title="Fenol - explicação geral" frameborder="0" allowfullscreen></iframe>';
+                subtitle.textContent = 'Apresentar o uso do fenol como agente antisséptico e em cosméticos.';
+                text.textContent = 'O fenol, também chamado de ácido carbólico, foi historicamente usado como antisséptico, mas hoje tem aplicações principalmente na dermatologia e em cosméticos. É utilizado em peelings químicos para renovação da pele, auxiliando no tratamento de manchas, cicatrizes e sinais de envelhecimento. Contudo, por ser uma substância tóxica e corrosiva, seu uso requer baixas concentrações e deve sempre ser realizado com acompanhamento profissional.';
             } else if (tipo === 'exemplos') {
                 title.textContent = 'Exemplos';
-                subtitle.textContent = 'Aplicações práticas do fenol como antisséptico e em cosméticos:';
+                subtitle.textContent = 'Aplicações práticas do fenol:';
                 text.textContent =
-                    'Uso Antisséptico:\n' +
+                    ' Uso Antisséptico:\n' +
                     '• Listerine (fórmula antiga, com derivados fenólicos)\n' +
                     '• Sabões e desinfetantes hospitalares (ex.: Lysol antigo)\n' +
                     '• Desinfecção de instrumentos cirúrgicos (uso histórico)\n' +
                     '• Pastilhas e sprays para garganta (com baixa concentração de fenol)\n\n' +
-                    'Uso Cosmético:\n' +
+                    ' Uso Cosmético:\n' +
                     '• Peeling de fenol para rejuvenescimento da pele\n' +
                     '• Tratamento de rugas profundas\n' +
                     '• Clareamento de manchas resistentes\n' +
                     '• Melhora de cicatrizes de acne';
-                videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/4n6RZ9hA_Gw" title="Exemplo prático: Peeling com Fenol" frameborder="0" allowfullscreen></iframe>';
+            } else if (tipo === 'video') {
+                title.textContent = 'Vídeo';
+                subtitle.textContent = 'Exemplo prático sobre o fenol:';
+                text.textContent = '';
+                videoEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/u09mBKHMHWI" frameborder="0" allowfullscreen></iframe>';
             }
 
             menu.style.display = 'none';
@@ -277,7 +211,6 @@
         function voltarMenu() {
             document.getElementById('menu').style.display = 'flex';
             document.getElementById('contentBox').style.display = 'none';
-            // opcional: rolar para o topo
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
