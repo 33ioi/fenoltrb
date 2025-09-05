@@ -126,6 +126,8 @@
         <button onclick="mostrarConteudo('introducao')">Introdução</button>
         <button onclick="mostrarConteudo('objetivo')">Objetivo</button>
         <button onclick="mostrarConteudo('exemplos')">Exemplos</button>
+        <button onclick="mostrarConteudo('curiosidades')">Curiosidades</button>
+        <button onclick="mostrarConteudo('impactos')">Impactos Ambientais</button>
         <button onclick="mostrarConteudo('video')">Vídeo</button>
         <button onclick="mostrarConteudo('conclusao')">Conclusão</button>
     </div>
@@ -145,7 +147,8 @@
     <script>
         function entrarSite() {
             const cover = document.getElementById('cover');
-            const menu = document.getElementById('menu');
+            const menu = 
+						document.getElementById('menu');
             cover.classList.add('fade-out');
             setTimeout(() => {
                 cover.style.display = 'none';
@@ -166,25 +169,37 @@
             if (tipo === 'introducao') {
                 title.textContent = 'Introdução';
                 subtitle.textContent = '';
-                text.textContent = 'Ao longo da evolução da medicina e da estética, muitas substâncias químicas foram descobertas e estudadas por seus efeitos sobre o corpo humano. Algumas ganharam destaque por apresentarem propriedades capazes de eliminar microrganismos, enquanto outras passaram a ser utilizadas em tratamentos voltados ao cuidado e à renovação da pele. Entre esses compostos, o fenol se tornou um exemplo importante: uma substância que, por suas características químicas, encontrou aplicações tanto na área da saúde quanto em procedimentos estéticos, despertando interesse por sua eficácia e exigindo atenção especial quanto à sua forma de uso.';
+                text.textContent = 'O fenol é um composto orgânico de estrutura aromática que ganhou importância pela sua versatilidade de uso. Sua ação antimicrobiana e seus efeitos sobre tecidos humanos o tornaram objeto de estudo na medicina e na estética. Apesar de tóxico em altas concentrações, seu emprego em doses controladas abriu caminho para aplicações seguras e eficazes em diferentes contextos.';
             } else if (tipo === 'objetivo') {
                 title.textContent = 'Objetivo';
-                subtitle.textContent = 'Apresentar o uso do fenol como agente antisséptico e em cosméticos.';
-                text.textContent = 'O fenol, também chamado de ácido carbólico, foi historicamente usado como antisséptico, mas hoje tem aplicações principalmente na dermatologia e em cosméticos. É utilizado em peelings químicos para renovação da pele, auxiliando no tratamento de manchas, cicatrizes e sinais de envelhecimento. Contudo, por ser uma substância tóxica e corrosiva, seu uso requer baixas concentrações e deve sempre ser realizado com acompanhamento profissional.';
+                subtitle.textContent = '';
+                text.textContent = 'Apresentar a relevância do fenol como substância química de uso controlado, destacando sua função como agente antisséptico e seu papel em procedimentos cosméticos, mostrando como uma mesma molécula pode atender finalidades distintas dependendo da forma de aplicação.';
             } else if (tipo === 'exemplos') {
                 title.textContent = 'Exemplos';
-                subtitle.textContent = 'Aplicações práticas do fenol:';
+                subtitle.textContent = '';
                 text.textContent =
-                    ' Uso Antisséptico:\n' +
-                    '• Listerine (fórmula antiga, com derivados fenólicos)\n' +
-                    '• Sabões e desinfetantes hospitalares (ex.: Lysol antigo)\n' +
-                    '• Desinfecção de instrumentos cirúrgicos (uso histórico)\n' +
-                    '• Pastilhas e sprays para garganta (com baixa concentração de fenol)\n\n' +
-                    ' Uso Cosmético:\n' +
-                    '• Peeling de fenol para rejuvenescimento da pele\n' +
-                    '• Tratamento de rugas profundas\n' +
-                    '• Clareamento de manchas resistentes\n' +
-                    '• Melhora de cicatrizes de acne';
+                    'Aplicações Antissépticas:\n' +
+                    '- Uso histórico na desinfecção de instrumentos cirúrgicos;\n' +
+                    '- Ingrediente de soluções de limpeza hospitalar;\n' +
+                    '- Componente em sprays de garganta e pastilhas medicinais em baixas doses.\n\n' +
+                    'Aplicações Cosméticas:\n' +
+                    '- Peelings profundos para renovação da pele;\n' +
+                    '- Tratamento de manchas resistentes;\n' +
+                    '- Suavização de rugas e cicatrizes de acne.';
+            } else if (tipo === 'curiosidades') {
+                title.textContent = 'Curiosidades';
+                subtitle.textContent = '';
+                text.textContent =
+                    '1. O fenol foi isolado pela primeira vez em 1834 a partir do alcatrão da hulha.\n\n' +
+                    '2. Ele foi essencial para a criação da baquelite, o primeiro plástico sintético, em 1907.\n\n' +
+                    '3. Hoje, a maior parte do fenol é usada na produção de resinas, adesivos, tintas e materiais de construção.\n\n' +
+                    '4. Derivados fenólicos estão presentes em alimentos e bebidas como café, vinho e chá, influenciando aroma e sabor.\n\n' +
+                    '5. Muitas plantas produzem fenóis naturalmente como forma de defesa contra pragas e microrganismos.\n\n' +
+                    '6. No século XIX, compostos derivados do fenol foram importantes para o desenvolvimento de corantes sintéticos.';
+            } else if (tipo === 'impactos') {
+                title.textContent = 'Impactos Ambientais';
+                subtitle.textContent = '';
+                text.textContent = 'O fenol, além de suas aplicações na medicina, na estética e na indústria, apresenta riscos significativos ao meio ambiente quando descartado de forma incorreta, pois sua alta solubilidade em água facilita a dispersão em rios, lagos e lençóis freáticos, dificultando a contenção em casos de acidentes e aumentando o potencial de contaminação de ecossistemas inteiros. Mesmo em baixas concentrações, ele é tóxico para organismos aquáticos, comprometendo a sobrevivência de peixes, plantas e microrganismos essenciais ao equilíbrio ecológico, e durante sua degradação podem surgir subprodutos igualmente nocivos que prolongam os danos ambientais. Por isso, as indústrias que utilizam fenol devem aplicar técnicas adequadas de tratamento de resíduos, como oxidação química e biodegradação controlada, antes de liberar qualquer efluente, sendo essa medida fundamental para reduzir impactos ambientais e proteger a saúde humana, já que a contaminação da água por fenol representa um risco direto ao abastecimento de comunidades.';
             } else if (tipo === 'video') {
                 title.textContent = 'Vídeo';
                 subtitle.textContent = 'Exemplo prático sobre o fenol:';
@@ -193,7 +208,7 @@
             } else if (tipo === 'conclusao') {
                 title.textContent = 'Conclusão';
                 subtitle.textContent = '';
-                text.textContent = 'O fenol atua desde o controle de microrganismos até tratamentos estéticos, sendo eficaz quando usado corretamente, mas exige cuidado profissional devido à sua toxicidade.';
+                text.textContent = 'O fenol reúne características que o tornam útil tanto no combate a microrganismos quanto em tratamentos estéticos. Entretanto, sua toxicidade exige uso restrito, controlado e supervisionado por profissionais capacitados. Assim, essa substância permanece relevante, mas sempre associada a critérios rigorosos de segurança.';
             }
 
             menu.style.display = 'none';
